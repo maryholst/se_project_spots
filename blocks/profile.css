@@ -71,6 +71,7 @@ text-overflow: ellipsis;
   height: 16px;
 }
 
+
 .profile__edit-text {
   width: 84px;
   height: 16px;
@@ -84,6 +85,10 @@ text-overflow: ellipsis;
   color:rgba(33, 33, 33, 0.7) ;
 }
 
+.profile__edit-text:hover {
+  color: #212121;
+}
+
 .profile__add-btn {
   background-color: #212121;
   margin-left: auto;
@@ -95,6 +100,11 @@ text-overflow: ellipsis;
   justify-content: center;
   align-items: center;
   gap: 8px;
+}
+
+.profile__add-btn:hover {
+  color: #212121;
+  opacity: 80%;
 }
 
 .profile__add-icon {
