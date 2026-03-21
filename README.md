@@ -1,21 +1,13 @@
-# Project 3: Spots
+# Spots
 
-### Overview  
+## Description
+Spots is an interactive page, made using a grid layout. Users can edit their profile and add a post, plus like and recieve likes on their posts. It is made to look good on most popular screen sizes (mobile-desktop) ny using media queries
 
-* Intro  
-* Figma  
-* Images  
-  
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/BBNm2bC3lj8QQMHlnqRsga/Sprint-3-Project-%E2%80%94-Spots?type=design&node-id=2%3A60&mode=design&t=afgNFybdorZO6cQo-1)
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+## Technologies
+ HTML and CSS were used to code the format of the site. Other technologies used inlcude: Figma, GitHub, Git and GitBash
+
+## Photos
+![Project Screenshot] (./images/Spots-main.jpeg) (./images/Spots-profile.jpeg)
+
+## Live Demo
+Link: https://maryholst.github.io/se_project_spots/
