@@ -13,4 +13,4 @@ Spots is an interactive page, made using a grid layout. Users can edit their pro
 Link: https://maryholst.github.io/se_project_spots/
 
 ## Link to pitch
-
+https://www.loom.com/share/9f9c28e9eea64d699f9c834723a28d76
