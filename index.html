@@ -81,8 +81,7 @@
    <footer class="footer">
     <p class="footer__copyright">2023 &copy Spots</p>
    </footer>
-   <div class="modal"></div>
-   <div class="modal modal_is-opened">
+   <div class="modal modal_is-opened" id="edit-profile">
     <div class="modal__container">
       <button class="modal__close" type="button">
         <img
@@ -92,18 +91,18 @@
       </button>
       <h2 class="modal__title">Edit Profile</h2>
       <form class="modal__form">
-        <label for="name input" class="modal__label">
+        <label for="name-input" class="modal__label">
           Name
           <input
-          id="name input"
+          id="name-input"
           type="text"
           class="modal__input"
           placeholder="Your name">
         </label>
-        <label  for="description input" class="modal__label">
+        <label  for="description-input" class="modal__label">
           Description
           <input
-          id="description input"
+          id="description-input"
           type="text"
           class="modal__input"
           placeholder="Describe yourself">
@@ -113,8 +112,7 @@
       </form>
     </div>
    </div>
-   <div class="modal"></div>
-<div class="modal modal_is-opened">
+<div class="modal modal_is-opened" id="new-post">
     <div class="modal__container">
       <button class="modal__close" type="button">
         <img
