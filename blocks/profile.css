@@ -30,13 +30,14 @@ flex-direction: column;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   max-width: 420px;
+  color: #212121
 }
 
 .profile__description {
 margin: 0;
 font-family: 'Poppins', Arial, sans-serif;
 font-weight: 500;
-font-style: medium;
+font-style: normal;
 font-size: 16px;
 line-height: 1;
 color: rgba(33, 33, 33, 0.7);
@@ -59,7 +60,7 @@ text-overflow: ellipsis;
   border: none;
   gap: 8px;
   display: flex;
-  padding: auto;
+  padding: 0;
   cursor: pointer;
 }
 
@@ -83,12 +84,12 @@ text-overflow: ellipsis;
 
 .profile__edit-btn:hover {
   opacity: 0.9;
-  transition: color 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .profile__add-btn {
   background-color: #212121;
-  width: 149px;
+  width: 157px;
   height: 52px;
   border-radius: 8px;
   display: flex;
