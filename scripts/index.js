@@ -54,6 +54,7 @@ function handleNewPostSubmit(evt) {
   evt.preventDefault();
   console.log(imageInput.value, captionInput.value);
   closeModal(newPostModal);
+  addCardForm.reset();
 }
 
 addCardForm.addEventListener("submit", handleNewPostSubmit);

@@ -94,6 +94,7 @@
   width: 156px;
   height: 52px;
   cursor: pointer;
+  border: none;
 }
 
 .modal__btn:hover {
@@ -113,5 +114,8 @@
   .modal__close {
     top: 12px;
     right: 12px;
+  }
+  .modal__btn {
+    width: 100%;
   }
 }
