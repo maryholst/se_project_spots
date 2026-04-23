@@ -50,11 +50,11 @@ function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
 }
 
-editProfile.addEventListener("click", function()
+editProfile.addEventListener("click", function() {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
   openModal(editProfileModal);
-);
+});
 
 editModalClose.addEventListener("click", function() {
    closeModal(editProfileModal);
