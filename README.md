@@ -1,7 +1,7 @@
 # Spots
 
 ## Description
-Spots is an interactive page, made using a grid layout. Users can edit their profile and add a post, plus like and recieve likes on their posts. It is made to look good on most popular screen sizes (mobile-desktop) ny using media queries
+Spots is an interactive page, made using a grid layout. Users can edit their profile and add a post, plus like and recieve likes on their posts. It is made to look good on most popular screen sizes (mobile-desktop) by using media queries
 
 ## Technologies
  HTML and CSS were used to code the format of the site. Other technologies used inlcude: Figma, GitHub, Git and GitBash
