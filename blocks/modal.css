@@ -11,7 +11,7 @@
   align-items: center;
   padding: 10px;
   opacity: 0;
-  transition: visibilty 0.3s, opacity 0.3s;
+  transition: visibility 0.3s, opacity 0.3s;
 }
 
 .modal_is-opened {
@@ -74,7 +74,6 @@
   height: 52px;
   box-sizing: border-box;
   border: 1px solid rgba(33,33,33,0.4);
-  border-radius: 8px;
   font-size: 20px;
   line-height: 1;
   padding: 16px 12px;
@@ -106,6 +105,71 @@
   color: #FCF5E5;
 }
 
+.modal__image-container {
+ position: relative;
+ max-width: 80vw;
+}
+
+.modal__image {
+  max-width: 80vw;
+  max-height: 80vh;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+  border-radius: 8px;
+
+  display: block;
+}
+
+.modal__caption {
+  width: 175px;
+  height: 32px;
+
+  margin-top: 8px;
+
+  background-color: #000;
+  color: #fff;
+
+  padding: 4px 8px;
+  box-sizing: border-box;
+
+  font-size: 15px;
+  line-height: 24px;
+
+  border-radius: 8px;
+}
+
+#preview-modal .modal__container {
+  background: transparent;
+  padding: 0;
+
+ 
+}
+
+
+#preview-modal .modal__close {
+  position: absolute;
+  top: 10px;
+  right: -40px;
+
+  width: 32px;
+  height: 32px;
+
+  background: url(../images/close1.png) center no-repeat;
+  background-size: contain;
+
+  border: none;
+  cursor: pointer;
+
+  opacity: 0.6;
+}
+
+.modal__close:hover {
+  color: #212121;
+  transition: color 0.3s ease-in;
+}
 @media screen and (max-width: 480px) {
   .modal__container {
     padding: 22px 12px 12px;

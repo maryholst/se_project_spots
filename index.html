@@ -45,6 +45,7 @@
         <section class="cards page__section">
           <template id="card-template">
             <li class="card">
+              <button class="card__delete-button" type="button"></button>
               <img
                 src="#"
                 alt=""
@@ -132,6 +133,13 @@
           </form>
         </div>
       </div>
+      <div class="modal modal_is-opened" id="preview-modal">
+  <div class="modal__image-container">
+    <button class="modal__close modal__close_type_preview" aria-label="Close modal" type="button"></button>
+    <img class="modal__image" src="https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg" alt="">
+  <p class="modal__caption">Golden Gate Bridge</p>
+  </div>
+</div>
     </div>
     <script src="./scripts/index.js"></script>
   </body>
