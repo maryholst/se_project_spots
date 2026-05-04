@@ -108,6 +108,8 @@
 .modal__image-container {
  position: relative;
  max-width: 80vw;
+  background: transparent;
+  padding: 0;
 }
 
 .modal__image {
@@ -141,18 +143,11 @@
   border-radius: 8px;
 }
 
-#preview-modal .modal__container {
-  background: transparent;
-  padding: 0;
-
- 
-}
-
 
 #preview-modal .modal__close {
   position: absolute;
-  top: 10px;
-  right: -40px;
+  top: -40px;
+  right: 0;
 
   width: 32px;
   height: 32px;
