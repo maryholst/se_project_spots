@@ -12,6 +12,7 @@
   padding: 10px;
   opacity: 0;
   transition: visibility 0.3s, opacity 0.3s;
+  z-index: 2;
 }
 
 .modal_is-opened {
@@ -107,13 +108,12 @@
 
 .modal__image-container {
  position: relative;
- max-width: 80vw;
   background: transparent;
   padding: 0;
 }
 
 .modal__image {
-  max-width: 80vw;
+  max-width: 90vw;
   max-height: 80vh;
 
   width: auto;
@@ -126,8 +126,7 @@
 }
 
 .modal__caption {
-  width: 175px;
-  height: 32px;
+  width: fit-content;
 
   margin-top: 8px;
 
