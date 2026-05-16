@@ -65,6 +65,7 @@
   font-size: 16px;
   font-weight: 500;
   color: #212121B2;
+  display: block;
 }
 
 .modal__input {
@@ -86,6 +87,17 @@
   padding: 16px 12px;
   font-size: 20px;
   font-weight: 500;
+}
+
+.modal__error {
+  display: block;
+  margin-top: 8px;
+  color: red;
+  visibility: hidden;
+}
+
+.modal__error_visible {
+  visibility: visible;
 }
 
 .modal__btn {
