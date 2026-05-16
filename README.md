@@ -14,3 +14,5 @@ Link: https://maryholst.github.io/se_project_spots/
 
 ## Link to pitch
 https://www.loom.com/share/9f9c28e9eea64d699f9c834723a28d76
+This is where I describe my project and some challeneges I faced while building it!
+https://www.loom.com/share/513b2bb1c4d54a039b628e9ab2e71ec0
