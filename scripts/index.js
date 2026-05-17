@@ -129,8 +129,7 @@ newModalClose.addEventListener("click", function() {
   closeModal(newPostModal);
 });
 
-previewCloseBtn.addEventListener("click", () => closeModal(previewModal));
-
+previewCloseBtn.addEventListener("click", () => closeModal(previewModal));  
 const modalList = document.querySelectorAll(".modal");
 
 modalList.forEach((modal) => {

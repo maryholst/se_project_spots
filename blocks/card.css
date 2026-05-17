@@ -43,7 +43,7 @@
   margin: 0;
   background-color: transparent;
   border: none;
-  background-image: url(../images/delete.png);
+  background-image: url(../images/delete.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -54,7 +54,7 @@
 
 .card__delete-button:hover {
   cursor: pointer;
-  background-image: url(../images/delete-hover.png);
+  background-image: url(../images/delete-hover.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -82,7 +82,7 @@
 
 .card__like-button_active {
   opacity: 1;
-  background-image: url(../images/like-active.png);
+  background-image: url(../images/liked-active.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

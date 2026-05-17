@@ -27,6 +27,7 @@
   max-width: 730px;
   width: 100%;
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .modal__close {
@@ -80,6 +81,10 @@
   line-height: 1;
   padding: 16px 12px;
   color: #212121;
+}
+
+.modal__input:hover {
+  border-color: #212121;
 }
 
 .modal__input::placeholder {
@@ -164,7 +169,7 @@
   padding: 4px 8px;
   box-sizing: border-box;
 
-  font-size: 15px;
+  font-size: 20px;
   line-height: 24px;
 
   border-radius: 8px;
@@ -184,14 +189,8 @@
 
   border: none;
   cursor: pointer;
-
-  opacity: 0.6;
 }
 
-.modal__close:hover {
-  color: #212121;
-  transition: color 0.3s ease-in;
-}
 @media screen and (max-width: 480px) {
   .modal__container {
     padding: 22px 12px 12px;
@@ -203,5 +202,11 @@
   }
   .modal__btn {
     width: 100%;
+  }
+  .modal__caption {
+    font-size: 16px;
+  }
+  .modal__title {
+    font-size: 20px;
   }
 }
