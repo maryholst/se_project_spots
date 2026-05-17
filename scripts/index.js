@@ -122,8 +122,6 @@ editModalClose.addEventListener("click", function() {
 });
 
 newPost.addEventListener("click", function() {
-  addCardForm.reset();
-resetValidation(addCardForm, settings);
   openModal(newPostModal);
 });
 
@@ -131,7 +129,7 @@ newModalClose.addEventListener("click", function() {
   closeModal(newPostModal);
 });
 
-previewCloseBtn.addEventListener('click', () => closeModal(previewModal));
+previewCloseBtn.addEventListener("click", () => closeModal(previewModal));
 
 const modalList = document.querySelectorAll(".modal");
 
@@ -166,6 +164,7 @@ function handleNewPostSubmit(evt) {
   
   closeModal(newPostModal);
   addCardForm.reset();
+  resetValidation(addCardForm, settings);
 }
 
 addCardForm.addEventListener("submit", handleNewPostSubmit);

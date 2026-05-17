@@ -100,6 +100,11 @@
   visibility: visible;
 }
 
+.modal__input_type_error {
+  border-bottom: red;
+  border: red;
+}
+
 .modal__btn {
   border-radius: 8px;
   background-color: #212121;
@@ -112,6 +117,17 @@
 .modal__btn:hover {
   opacity: 0.8;
   transition: opacity 0.3s ease-in;
+}
+
+.modal__btn_disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+.modal__btn_disabled:hover {
+  background-color: inherit;
+  transform: none;
 }
 
 .modal__btn-text {

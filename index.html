@@ -46,11 +46,7 @@
           <template id="card-template">
             <li class="card">
               <button class="card__delete-button" type="button"></button>
-              <img
-                src="#"
-                alt=""
-                class="card__image"
-              />
+              <img src="#" alt="" class="card__image" />
               <div class="card__content">
                 <h2 class="card__title"></h2>
                 <button class="card__like-button" type="button"></button>
@@ -77,7 +73,7 @@
             <label for="name-input" class="modal__label">
               Name
               <input
-              required
+                required
                 id="name-input"
                 type="text"
                 class="modal__input"
@@ -85,11 +81,12 @@
                 minlength="2"
                 maxlength="40"
               />
+              <span id="name-input-error" class="modal__error"></span>
             </label>
             <label for="description-input" class="modal__label">
               Description
               <input
-              required
+                required
                 id="description-input"
                 type="text"
                 class="modal__input"
@@ -97,6 +94,7 @@
                 minlength="2"
                 maxlength="200"
               />
+              <span id="description-input-error" class="modal__error"></span>
             </label>
             <button class="modal__btn" type="submit">
               <span class="modal__btn-text">Save</span>
@@ -118,24 +116,26 @@
             <label for="card-image" class="modal__label">
               Image link
               <input
-              required
+                required
                 id="card-image"
                 type="url"
                 class="modal__input"
                 placeholder="Paste a link to the picture"
               />
-              <span id="card-link-error" class="modal__error"></span>
+              <span id="card-image-error" class="modal__error"></span>
             </label>
             <label for="card-caption" class="modal__label">
               Caption
               <input
-              required
+                required
                 id="card-caption"
                 type="text"
                 class="modal__input"
                 placeholder="Type your caption"
+                minlength="2"
+                maxlength="30"
               />
-              <span id="card-caption-error"    class="modal__error"></span>
+              <span id="card-caption-error" class="modal__error"></span>
             </label>
             <button class="modal__btn" type="submit">
               <span class="modal__btn-text">Save</span>
@@ -144,12 +144,20 @@
         </div>
       </div>
       <div class="modal" id="preview-modal">
-  <div class="modal__image-container">
-    <button class="modal__close modal__close_type_preview" aria-label="Close modal" type="button"></button>
-    <img class="modal__image" src="https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg" alt="">
-  <p class="modal__caption">Golden Gate Bridge</p>
-  </div>
-</div>
+        <div class="modal__image-container">
+          <button
+            class="modal__close modal__close_type_preview"
+            aria-label="Close modal"
+            type="button"
+          ></button>
+          <img
+            class="modal__image"
+            src="https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"
+            alt="preview image"
+          />
+          <p class="modal__caption">Golden Gate Bridge</p>
+        </div>
+      </div>
     </div>
     <script src="./scripts/index.js"></script>
     <script src="./scripts/validation.js"></script>
