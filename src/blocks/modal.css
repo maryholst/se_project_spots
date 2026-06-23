@@ -175,6 +175,10 @@
   border-radius: 8px;
 }
 
+.modal__text {
+  
+}
+
 
 #preview-modal .modal__close {
   position: absolute;

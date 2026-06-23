@@ -1,42 +1,7 @@
-
-import "./index.css";
-import {
-  settings,
-  enableValidation,
-  resetValidation,
-} from "../scripts/validation.js";
-
-
-const initialCards = [
-  {
-  name: "Val Thorens",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg"
-},
-{
-  name: "Restaurant terrace",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg"
-},
-{
-  name: "An outdoor cafe",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg"
-},
-{
-  name: "A very long bridge, over the forest and through the trees",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg"
-},
-{
-  name: "Tunnel with morning light",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg"
-},
-{
-  name: "Mountain house",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg"
-},
-{
-  name: "Golden Gate Bridge",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"
-}
-];
+import { settings } from "../scripts/validation.js";
+import { enableValidation } from "../scripts/validation.js";
+import { resetValidation } from "../scripts/validation.js";
+import { Api } from "../utils/Api.js";
 
 const editProfile = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -46,7 +11,9 @@ const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 const editProfileNameInput = editProfileModal.querySelector("#name-input");
 const editProfileDescriptionInput = editProfileModal.querySelector("#description-input");
+const profileAvatar = document.querySelector(".profile__avatar");
 
+let userId;
 
 const newPost = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
@@ -119,6 +86,18 @@ function handleEscape(evt) {
   }
 }
 
+function renderLoading(form, isLoading, defaultText = "Save") {
+  const button = form.querySelector(".modal__submit-btn");
+
+  if (isLoading) {
+    button.textContent = "Saving...";
+    button.disabled = true;
+  } else {
+    button.textContent = defaultText;
+    button.disabled = false;
+  }
+}
+
 editProfile.addEventListener("click", function() {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
@@ -138,6 +117,8 @@ newModalClose.addEventListener("click", function() {
   closeModal(newPostModal);
 });
 
+editProfileForm.addEventListener("submit", handleEditProfileSubmit);
+
 previewCloseBtn.addEventListener("click", () => closeModal(previewModal));  
 const modalList = document.querySelectorAll(".modal");
 
@@ -151,12 +132,19 @@ modalList.forEach((modal) => {
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
-  profileNameEl.textContent = editProfileNameInput.value;
-  profileDescriptionEl.textContent = editProfileDescriptionInput.value;
-  closeModal(editProfileModal);
-}
 
-editProfileForm.addEventListener("submit", handleEditProfileSubmit);
+  api.editUserInfo({
+    name: editProfileNameInput.value,
+    about: editProfileDescriptionInput.value
+  })
+  .then((userData) => {
+    profileNameEl.textContent = userData.name;
+    profileDescriptionEl.textContent = userData.about;
+
+    closeModal(editProfileModal);
+  })
+  .catch(console.error);
+}
 
 function handleNewPostSubmit(evt) {
   evt.preventDefault();
@@ -166,20 +154,52 @@ function handleNewPostSubmit(evt) {
     link: imageInput.value
   };
 
-  const cardElement = getCardElement(newCard);
-  
-  cardsList.prepend(cardElement);
+  renderLoading(addCardForm, true)
+
+  api.addCard(newCard)
+  .then((cardData) => {
+    const cardElement = getCardElement(cardData);
+    cardsList.prepend(cardElement);
   
   closeModal(newPostModal);
   addCardForm.reset();
   resetValidation(addCardForm, settings);
+})
+.catch((err) => {
+  console.error("Failed to add card:", err)
+})
+.finally(() => {
+  renderLoading(addCardForm, false);
+});
 }
 
 addCardForm.addEventListener("submit", handleNewPostSubmit);
 
-initialCards.forEach(function (item) {
-  const cardElement = getCardElement(item);
-  cardsList.append(cardElement);
+enableValidation(settings);
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    "Content-Type": "application/json"
+  }
 });
 
-enableValidation(settings);
+api
+  .getAppInfo()
+  .then(([userData, cards]) => {
+    profileDescriptionEl.textContent = userData.about;
+    profileAvatar.src = userData.avatar;
+    profileAvatar.alt = userData.avatar;
+    profileNameEl.textContent = userData.name;
+    userId = userData._id;
+
+    cards.forEach((item) => {
+      const cardElement = getCardElement(item);
+      cardsList.append(cardElement);
+    });
+  })
+
+  .catch((err) => {
+    console.error("Failed to load app data:", err);
+  });
