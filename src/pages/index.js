@@ -4,6 +4,33 @@ import { enableValidation } from "../scripts/validation.js";
 import { resetValidation } from "../scripts/validation.js";
 import { Api } from "../utils/Api.js";
 
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "87ebdb0f-9e77-448f-b755-fc19199d7faf",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .getAppInfo()
+  .then(([userData, cards]) => {
+    profileDescriptionEl.textContent = userData.about;
+    profileAvatar.src = userData.avatar;
+    profileAvatar.alt = userData.avatar;
+    profileNameEl.textContent = userData.name;
+    userId = userData._id;
+
+    cards.forEach((item) => {
+      const cardElement = getCardElement(item);
+      cardsList.append(cardElement);
+    });
+  })
+
+  .catch((err) => {
+    console.error("Failed to load app data:", err);
+  });
+
 const editProfile = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editModalClose = editProfileModal.querySelector(".modal__close");
@@ -11,12 +38,12 @@ const editProfileForm = editProfileModal.querySelector(".modal__form");
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 const editProfileNameInput = editProfileModal.querySelector("#name-input");
-const editProfileDescriptionInput =
-  editProfileModal.querySelector("#description-input");
+const editProfileDescriptionInput = editProfileModal.querySelector("#description-input");
 const profileAvatar = document.querySelector(".profile__avatar");
 
 let userId;
-let cardToDelete = null;
+let selectedCard = null;
+let selectedCardId = null;
 
 const newPost = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
@@ -34,7 +61,7 @@ const avatarEditBtn = document.querySelector(".profile__avatar-btn");
 const deleteModal = document.querySelector("#delete-modal");
 const deleteCloseBtn = deleteModal.querySelector(".modal__close-delete");
 const deleteCancelBtn = deleteModal.querySelector(".modal__cancel-btn");
-const deleteConfirmBtn = document.querySelector(".modal__delete-btn");
+const deleteConfirmBtn = deleteModal.querySelector(".modal__delete-btn");
 
 const previewModal = document.querySelector("#preview-modal");
 const previewImage = previewModal.querySelector(".modal__image");
@@ -55,31 +82,27 @@ function getCardElement(data) {
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
-  const likeBtn = cardElement.querySelector(".card__like-button");
 
-  likeBtn.addEventListener("click", function (evt) {
-  const isLiked = evt.target.classList.contains("card__like-button_active");
-
-  api.handleLikes(data._id, isLiked)
-    .then(() => {
-      evt.target.classList.toggle("card__like-button_active");
-    })
-    .catch((err) => console.error(err));
-});
-
-  const deleteBtn = cardElement.querySelector(".card__delete-button");
+const deleteBtn = cardElement.querySelector(".card__delete-button");
 
   deleteBtn.addEventListener("click", function () {
-    cardToDelete = cardElement;
+    selectedCard = cardElement;
+    selectedCardId = data._id;
+
     openModal(deleteModal);
   });
 
-  cardImageEl.addEventListener("click", function () {
-    previewImage.src = data.link;
-    previewImage.alt = data.name;
-    previewCaption.textContent = data.name;
+  const likeBtn = cardElement.querySelector(".card__like-button");
 
-    openModal(previewModal);
+  likeBtn.addEventListener("click", function (evt) {
+    const isLiked = evt.target.classList.contains("card__like-button_active");
+
+    api
+      .handleLikes(data._id, isLiked)
+      .then(() => {
+        evt.target.classList.toggle("card__like-button_active");
+      })
+      .catch((err) => console.error(err));
   });
 
   return cardElement;
@@ -162,12 +185,29 @@ avatarModalCloseBtn.addEventListener("click", () => {
 
 avatarForm.addEventListener("submit", handleAvatarSubmit);
 
-deleteConfirmBtn.addEventListener("click", function () {
-  if (cardToDelete) {
-    cardToDelete.remove();
-    cardToDelete = null;
-  }
-  closeModal(deleteModal);
+
+deleteConfirmBtn.addEventListener("click", () => {
+  if (!selectedCardId) return;
+
+  const deleteText = deleteConfirmBtn.querySelector(".modal__delete-text");
+  const originalText = deleteText.textContent;
+
+  deleteText.textContent = "Deleting...";
+  deleteConfirmBtn.disabled = true;
+
+  api.deleteCard(selectedCardId)
+    .then(() => {
+      selectedCard.remove();
+      selectedCard = null;
+      selectedCardId = null;
+
+      closeModal(deleteModal);
+    })
+    .catch(console.error)
+    .finally(() => {
+      deleteText.textContent = originalText;
+      deleteConfirmBtn.disabled = false;
+    });
 });
 
 deleteCancelBtn.addEventListener("click", function () {
@@ -188,7 +228,7 @@ modalList.forEach((modal) => {
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
-  
+
   const submitBtn = evt.submitter;
   submitBtn.textContent = "Saving...";
 
@@ -251,30 +291,3 @@ function handleAvatarSubmit(evt) {
 addCardForm.addEventListener("submit", handleNewPostSubmit);
 
 enableValidation(settings);
-
-const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: "87ebdb0f-9e77-448f-b755-fc19199d7faf",
-    "Content-Type": "application/json",
-  },
-});
-
-api
-  .getAppInfo()
-  .then(([userData, cards]) => {
-    profileDescriptionEl.textContent = userData.about;
-    profileAvatar.src = userData.avatar;
-    profileAvatar.alt = userData.avatar;
-    profileNameEl.textContent = userData.name;
-    userId = userData._id;
-
-    cards.forEach((item) => {
-      const cardElement = getCardElement(item);
-      cardsList.append(cardElement);
-    });
-  })
-
-  .catch((err) => {
-    console.error("Failed to load app data:", err);
-  });
