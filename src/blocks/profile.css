@@ -5,6 +5,62 @@
   border-bottom: 1px rgba(33, 33, 33, 0.4) solid;
 }
 
+.profile__avatar-container {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  padding: 0;
+}
+
+.profile__avatar-btn {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  border-radius: 8px;
+  margin-top: auto;
+  border: none;
+  gap: 8px;
+  display: flex;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+  background-color: rgba(33, 33, 33, 0.5);
+  z-index: 2;
+}
+
+.profile__avatar-container:hover .profile__avatar-btn {
+  visibility: visible;
+  opacity: 1;
+}
+
+.profile__avatar-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #212121;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.profile__avatar-btn::after {
+  content: "Edit Avatar";
+  color: #ffffff;
+  margin-bottom: 12px;
+  opacity: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.profile__pencil-icon {
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
 .profile__avatar {
   height: 190px;
   width: 190px;
@@ -13,13 +69,13 @@
 }
 
 .profile__column {
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .profile__name {
   margin: 0 0 12px;
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
   font-weight: 500;
   font-style: normal;
   font-size: 32px;
@@ -30,12 +86,12 @@ flex-direction: column;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   max-width: 420px;
-  color: #212121
+  color: #212121;
 }
 
 .profile__description {
   margin: 0;
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
   font-weight: 500;
   font-style: normal;
   font-size: 16px;
@@ -70,17 +126,16 @@ flex-direction: column;
   height: 16px;
 }
 
-
 .profile__edit-text {
   width: 84px;
   display: flex;
   flex-direction: row;
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
   font-weight: 500;
   font-style: normal;
   font-size: 16px;
   line-height: 1;
-  color:rgba(33, 33, 33, 0.7) ;
+  color: rgba(33, 33, 33, 0.7);
 }
 
 .profile__edit-btn:hover {
@@ -118,37 +173,67 @@ flex-direction: column;
 }
 
 @media screen and (max-width: 627px) {
-.profile {
-  display: flex;
-  flex-direction: column;
-  max-width: 288px;
-  align-items: center;
-  text-align: center;
-  padding-top: 20px;
-}
-.profile__avatar {
-  height: 80px;
-  width: 80px;
-  margin: 0 0 12px;
-}
-.profile__name {
-  font-size: 20px;
-  margin: 0 0 6px;
-  max-width: 288px;
-}
-.profile__description {
-  margin: 0 0 32px;
-  max-width: 288px;
-}
-.profile__column {
-  margin: 0 0 20px;
-}
-.profile__edit-btn {
-  margin: 0 auto;
-  padding: 0;
-}
-.profile__add-btn {
-  margin: 0;
-  width: 100%;
-}
+  .profile {
+    display: flex;
+    flex-direction: column;
+    max-width: 288px;
+    align-items: center;
+    text-align: center;
+    padding-top: 20px;
+  }
+  .profile__avatar-btn {
+    visibility: visible;
+  }
+  .profile__avatar-btn::after {
+    /* return empty string*/
+  }
+  .profile__avatar {
+    height: 80px;
+    width: 80px;
+    margin: 0 0 12px;
+  }
+  .profile__name {
+    font-size: 20px;
+    margin: 0 0 6px;
+    max-width: 288px;
+  }
+  .profile__description {
+    margin: 0 0 32px;
+    max-width: 288px;
+  }
+  .profile__column {
+    margin: 0 0 20px;
+  }
+  .profile__edit-btn {
+    margin: 0 auto;
+    padding: 0;
+  }
+  .profile__add-btn {
+    margin: 0;
+    width: 100%;
+  }
+  .profile__avatar-btn {
+    width: 23px;
+    height: 23px;
+    inset: auto;
+    top: 52px;
+    left: 52px;
+    opacity: 0.6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    content: none;
+    background-color: #212121;
+  }
+  .profile__avatar-btn::before {
+    display: none;
+  }
+  .profile__avatar-btn::after {
+    content: "";
+  }
+  .profile__pencil-icon {
+    margin: 0 auto;
+    padding-left: 6px;
+  }
 }
