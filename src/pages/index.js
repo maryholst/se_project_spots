@@ -4,6 +4,7 @@ import { enableValidation } from "../scripts/validation.js";
 import { resetValidation } from "../scripts/validation.js";
 import { Api } from "../utils/Api.js";
 import { handleSubmit } from "../utils/utils.js";
+import { renderLoading } from "../utils/utils.js";
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",

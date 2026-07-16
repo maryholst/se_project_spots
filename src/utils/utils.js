@@ -1,8 +1,15 @@
-function renderLoading(isLoading, button, buttonText='Save', loadingText='Saving...') {
+export function renderLoading(
+  isLoading,
+  button,
+  originalText = "Save",
+  loadingText = "Saving..."
+) {
+  const buttonText = button.querySelector(".modal__btn-text");
+
   if (isLoading) {
-    button.textContent = loadingText
+    buttonText.textContent = loadingText;
   } else {
-    button.textContent = buttonText
+    buttonText.textContent = originalText;
   }
 }
 
@@ -10,6 +17,7 @@ export function handleSubmit(request, evt, loadingText = "Saving...") {
   evt.preventDefault();
 
   const submitButton = evt.submitter;
+  const buttonText = submitButton.querySelector(".modal__btn-text");
   const originalText = submitButton.textContent;
 
   renderLoading(true, submitButton, originalText, loadingText);

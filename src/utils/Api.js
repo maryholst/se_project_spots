@@ -49,10 +49,10 @@ export class Api {
     });
   }
 
-  editAvatarInfo(avatar) {
-    return this._request("/user/me/avatar", {
+  editAvatarInfo(data) {
+    return this._request("/users/me/avatar", {
       method: "PATCH",
-      body: JSON.stringify({ avatar }),
+      body: JSON.stringify( data )
     });
   }
 
