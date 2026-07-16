@@ -4,7 +4,7 @@ export const settings = {
   submitButtonSelector: ".modal__btn",
   inactiveButtonClass: "modal__btn_disabled",
   inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible"
+  errorClass: "modal__error_visible",
 };
 
 const hasInvalidInput = (inputList) => {
@@ -51,7 +51,6 @@ const checkInputValidity = (formEl, inputEl, config) => {
   }
 };
 
-
 const setEventListeners = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
   const buttonElement = formEl.querySelector(config.submitButtonSelector);
@@ -65,7 +64,6 @@ const setEventListeners = (formEl, config) => {
     });
   });
 };
-
 
 export const enableValidation = (config) => {
   const formList = document.querySelectorAll(config.formSelector);

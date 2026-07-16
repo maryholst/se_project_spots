@@ -14,11 +14,20 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            class="profile__avatar"
-            src="./images/avatar.jpg"
-            alt="avatar profile image"
-          />
+          <div class="profile__avatar-container">
+            <button class="profile__avatar-btn">
+              <img
+                class="profile__pencil-icon"
+                src="./images/edit-white.svg"
+                alt="pencil icon"
+              />
+            </button>
+            <img
+              class="profile__avatar"
+              src="./images/avatar.jpg"
+              alt="avatar profile image"
+            />
+          </div>
           <div class="profile__column">
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
@@ -141,6 +150,32 @@
           </form>
         </div>
       </div>
+      <div class="modal" id="delete-modal">
+        <div class="modal__content">
+          <button
+            class="modal__close modal__close-delete"
+            aria-label="Close modal"
+            type="button"
+          >
+            <img
+              class="modal__close-img"
+              src="./images/close-1.svg"
+              alt="close button"
+            />
+          </button>
+          <h2 class="modal__text">
+            Are you sure you want to delete this image?
+          </h2>
+          <div class="modal__buttons">
+            <button class="modal__delete-btn" type="button">
+              <span class="modal__delete-text">Delete</span>
+            </button>
+            <button class="modal__cancel-btn" type="button">
+              <span class="modal__cancel-text">Cancel</span>
+            </button>
+          </div>
+        </div>
+      </div>
       <div class="modal" id="preview-modal">
         <div class="modal__image-container">
           <button
@@ -155,6 +190,35 @@
           />
           <p class="modal__caption">Golden Gate Bridge</p>
         </div>
+      </div>
+    </div>
+    <div class="modal" id="avatar-modal">
+      <div class="modal__container">
+        <button aria-label="Close modal" class="modal__close" type="button">
+          <img
+            class="modal__close-img"
+            src="./images/close2.png"
+            alt="modal close"
+          />
+        </button>
+        <h2 class="modal__title">Edit profile avatar</h2>
+        <form class="modal__form" id="edit-avatar-form">
+          <label class="modal__label" for="profile-avatar-input">
+            Profile picture
+            <input
+              class="modal__input"
+              id="profile-avatar-input"
+              name="name"
+              type="url"
+              placeholder="paste the link to an image"
+              required
+            />
+            <span class="modal__error" id="profile-avatar-input-error"></span>
+          </label>
+          <button class="modal__btn" type="submit">
+            <span class="modal__btn-text">Save</span>
+          </button>
+        </form>
       </div>
     </div>
   </body>
